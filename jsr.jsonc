@@ -1,0 +1,35 @@
+// This file is only for JSR related, non-JSR related must set in the file `deno.jsonc`!
+{
+	"name": "@hugoalh/string-dissect",
+	"version": "1.0.0",
+	"exports": {
+		".": "./mod.ts"
+	},
+	"imports": {
+		"https://esm.sh/ansi-regex@6.0.1": "npm:ansi-regex@6.0.1",
+		"https://esm.sh/url-regex-safe@4.0.0": "npm:url-regex-safe@4.0.0"
+	},
+	"publish": {
+		"exclude": [
+			"**/*_bench.ts",
+			"**/*_bench.tsx",
+			"**/*_test.ts",
+			"**/*_test.tsx",
+			"**/*.bench.ts",
+			"**/*.bench.tsx",
+			"**/*.test.ts",
+			"**/*.test.tsx",
+			"**/bench.ts",
+			"**/bench.tsx",
+			"**/test.ts",
+			"**/test.tsx"
+		],
+		"include": [
+			"**/*.ts",
+			"**/*.tsx",
+			"jsr.jsonc",
+			"LICENSE*.md",
+			"README*.md"
+		]
+	}
+}
