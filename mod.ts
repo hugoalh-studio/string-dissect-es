@@ -205,7 +205,7 @@ export {
 	 * @deprecated Renamed to `dissectString`.
 	 */
 	dissectString as stringDissect
-}
+};
 /**
  * Dissect the string with extend information; Safe with the emojis, URLs, and words.
  * @param {string} item String that need to dissect.
@@ -220,4 +220,4 @@ export {
 	 * @deprecated Renamed to `dissectStringExtend`.
 	 */
 	dissectStringExtend as stringDissectExtend
-}
+};
