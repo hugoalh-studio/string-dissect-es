@@ -197,8 +197,14 @@ export default StringDissector;
  * @param {StringDissectorOptions} [options={}] Options.
  * @returns {Generator<StringSegmentDescriptor>} A dissected string with descriptor.
  */
-export function stringDissect(item: string, options: StringDissectorOptions = {}): Generator<StringSegmentDescriptor> {
+export function dissectString(item: string, options: StringDissectorOptions = {}): Generator<StringSegmentDescriptor> {
 	return new StringDissector(options).dissect(item);
+}
+export {
+	/**
+	 * @deprecated Use `dissectString` instead.
+	 */
+	dissectString as stringDissect
 }
 /**
  * Dissect the string with extend information; Safe with the emojis, URLs, and words.
@@ -206,6 +212,12 @@ export function stringDissect(item: string, options: StringDissectorOptions = {}
  * @param {StringDissectorOptions} [options={}] Options.
  * @returns {Generator<StringSegmentDescriptorExtend>} A dissected string with extend descriptor.
  */
-export function stringDissectExtend(item: string, options: StringDissectorOptions = {}): Generator<StringSegmentDescriptorExtend> {
+export function dissectStringExtend(item: string, options: StringDissectorOptions = {}): Generator<StringSegmentDescriptorExtend> {
 	return new StringDissector(options).dissectExtend(item);
+}
+export {
+	/**
+	 * @deprecated Use `dissectStringExtend` instead.
+	 */
+	dissectStringExtend as stringDissectExtend
 }
