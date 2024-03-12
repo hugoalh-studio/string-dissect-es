@@ -1,7 +1,7 @@
 // This file is only for JSR related, non-JSR related must set in the file `deno.jsonc`!
 {
 	"name": "@hugoalh/string-dissect",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"exports": {
 		".": "./mod.ts"
 	},
