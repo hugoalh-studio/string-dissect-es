@@ -202,7 +202,7 @@ export function dissectString(item: string, options: StringDissectorOptions = {}
 }
 export {
 	/**
-	 * @deprecated Use `dissectString` instead.
+	 * @deprecated Renamed to `dissectString`.
 	 */
 	dissectString as stringDissect
 }
@@ -217,7 +217,7 @@ export function dissectStringExtend(item: string, options: StringDissectorOption
 }
 export {
 	/**
-	 * @deprecated Use `dissectStringExtend` instead.
+	 * @deprecated Renamed to `dissectStringExtend`.
 	 */
 	dissectStringExtend as stringDissectExtend
 }
