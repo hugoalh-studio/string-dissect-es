@@ -1,14 +1,12 @@
-# String Dissect (TypeScript)
+# String Dissect (ES)
 
 [**⚖️** MIT](./LICENSE.md)
 
-**🗂️**
-[![GitHub: hugoalh-studio/string-dissect-ts](https://img.shields.io/badge/hugoalh--studio/string--dissect--ts-181717?logo=github&logoColor=ffffff&style=flat "GitHub: hugoalh-studio/string-dissect-ts")](https://github.com/hugoalh-studio/string-dissect-ts)
-[![JSR: @hugoalh/string-dissect](https://img.shields.io/badge/JSR-@hugoalh/string--dissect-F7DF1E?labelColor=F7DF1E&logoColor=000000&style=flat "JSR: @hugoalh/string-dissect")](https://jsr.io/@hugoalh/string-dissect)
+[![GitHub: hugoalh-studio/string-dissect-es](https://img.shields.io/github/v/release/hugoalh-studio/string-dissect-es?label=hugoalh-studio/string-dissect-es&labelColor=181717&logo=github&logoColor=ffffff&sort=semver&style=flat "GitHub: hugoalh-studio/string-dissect-es")](https://github.com/hugoalh-studio/string-dissect-es)
+[![JSR: @hugoalh/string-dissect](https://img.shields.io/jsr/v/@hugoalh/string-dissect?label=JSR%20@hugoalh/string-dissect&labelColor=F7DF1E&logoColor=000000&style=flat "JSR: @hugoalh/string-dissect")](https://jsr.io/@hugoalh/string-dissect)
+[![NPM: @hugoalh/string-dissect](https://img.shields.io/npm/v/@hugoalh/string-dissect?label=@hugoalh/string-dissect&labelColor=CB3837&logo=npm&logoColor=ffffff&style=flat "NPM: @hugoalh/string-dissect")](https://www.npmjs.com/package/@hugoalh/string-dissect)
 
-**🆙** ![Latest Release Version](https://img.shields.io/github/release/hugoalh-studio/string-dissect-ts?sort=semver&color=2187C0&label=&style=flat "Latest Release Version") (![Latest Release Date](https://img.shields.io/github/release-date/hugoalh-studio/string-dissect-ts?color=2187C0&label=&style=flat "Latest Release Date"))
-
-A TypeScript module to dissect the string; Safe with the emojis, URLs, and words.
+An ES (JavaScript & TypeScript) module to dissect the string; Safe with the emojis, URLs, and words.
 
 ## 🎯 Target
 
@@ -20,56 +18,9 @@ A TypeScript module to dissect the string; Safe with the emojis, URLs, and words
   > *N/A*
 - NodeJS >= v20.9.0
 
-### 🔗 Other Edition
-
-- [JavaScript](https://github.com/hugoalh-studio/string-dissect-js)
-
 ## 🔰 Usage
 
-### Via HTTPS
-
-> **🎯 Supported Target**
->
-> - Deno
-
-1. Import at the script (`<ScriptName>.ts`):
-    - Via DenoPKG
-      ```ts
-      import ... from "https://denopkg.com/hugoalh-studio/string-dissect-ts[@<Tag>]/mod.ts";
-      ```
-    - Via GitHub Raw (Require Tag)
-      ```ts
-      import ... from "https://raw.githubusercontent.com/hugoalh-studio/string-dissect-ts/<Tag>/mod.ts";
-      ```
-    - Via Pax
-      ```ts
-      import ... from "https://pax.deno.dev/hugoalh-studio/string-dissect-ts[@<Tag>]/mod.ts";
-      ```
-    > **ℹ️ Note**
-    >
-    > Although it is recommended to import the entire module with the main path `mod.ts`, it is also able to import part of the module with sub path if available, but do not import if:
-    >
-    > - it's file path has an underscore prefix (e.g.: `_foo.ts`, `_util/bar.ts`), or
-    > - it is a benchmark or test file (e.g.: `foo.bench.ts`, `foo.test.ts`), or
-    > - it's symbol has an underscore prefix (e.g.: `export function _baz() {}`).
-    >
-    > These elements are not considered part of the public API, thus no stability is guaranteed for them.
-
-### Via JSR With Native Support
-
-> **🎯 Supported Target**
->
-> - Deno
-
-1. Import at the script (`<ScriptName>.ts`):
-    ```ts
-    import ... from "jsr:@hugoalh/string-dissect[@<Tag>]";
-    ```
-    > **ℹ️ Note**
-    >
-    > Although it is recommended to import the entire module, it is also able to import part of the module with sub path if available, please visit [file `jsr.jsonc`](./jsr.jsonc) property `exports` for available sub paths.
-
-### Via JSR With NPM Compatibility Layer Support
+### Via JSR With `node_modules`
 
 > **🎯 Supported Target**
 >
@@ -77,30 +28,118 @@ A TypeScript module to dissect the string; Safe with the emojis, URLs, and words
 > - Cloudflare Workers
 > - NodeJS
 
-1. Install via console/shell/terminal:
-    - Via Bun
+1. Install via:
+    - Bun
       ```sh
-      bunx jsr add @hugoalh/string-dissect[@<Tag>]
+      bunx jsr add @hugoalh/string-dissect[@${Tag}]
       ```
-    - Via NPM
+    - NPM
       ```sh
-      npx jsr add @hugoalh/string-dissect[@<Tag>]
+      npx jsr add @hugoalh/string-dissect[@${Tag}]
       ```
-    - Via PNPM
+    - PNPM
       ```sh
-      pnpm dlx jsr add @hugoalh/string-dissect[@<Tag>]
+      pnpm dlx jsr add @hugoalh/string-dissect[@${Tag}]
       ```
-    - Via Yarn
+    - Yarn
       ```sh
-      yarn dlx jsr add @hugoalh/string-dissect[@<Tag>]
+      yarn dlx jsr add @hugoalh/string-dissect[@${Tag}]
       ```
-2. Import at the script (`<ScriptName>.ts`):
+2. Import at the script:
     ```ts
     import ... from "@hugoalh/string-dissect";
     ```
-    > **ℹ️ Note**
-    >
-    > Although it is recommended to import the entire module, it is also able to import part of the module with sub path if available, please visit [file `jsr.jsonc`](./jsr.jsonc) property `exports` for available sub paths.
+
+> **ℹ️ Note**
+>
+> - Although it is recommended to import the entire module, it is also able to import part of the module with sub path if available, please visit [file `jsr.jsonc`](./jsr.jsonc) property `exports` for available sub paths.
+> - It is recommended to import the module with tag for immutability.
+
+### Via JSR With Specifier
+
+> **🎯 Supported Target**
+>
+> - Deno
+
+1. Import at the script:
+    ```ts
+    import ... from "jsr:@hugoalh/string-dissect[@${Tag}]";
+    ```
+
+> **ℹ️ Note**
+>
+> - Although it is recommended to import the entire module, it is also able to import part of the module with sub path if available, please visit [file `jsr.jsonc`](./jsr.jsonc) property `exports` for available sub paths.
+> - It is recommended to import the module with tag for immutability.
+
+### Via NPM With `node_modules`
+
+> **🎯 Supported Target**
+>
+> - Cloudflare Workers
+> - NodeJS
+
+1. Install via:
+    - NPM
+      ```sh
+      npm install @hugoalh/string-dissect[@${Tag}]
+      ```
+    - PNPM
+      ```sh
+      pnpm add @hugoalh/string-dissect[@${Tag}]
+      ```
+    - Yarn
+      ```sh
+      yarn add @hugoalh/string-dissect[@${Tag}]
+      ```
+2. Import at the script:
+    ```ts
+    import ... from "@hugoalh/string-dissect";
+    ```
+
+> **ℹ️ Note**
+>
+> - Although it is recommended to import the entire module, it is also able to import part of the module with sub path if available, please visit [file `jsr.jsonc`](./jsr.jsonc) property `exports` for available sub paths.
+> - It is recommended to import the module with tag for immutability.
+
+### Via NPM With Specifier
+
+> **🎯 Supported Target**
+>
+> - Bun
+> - Deno
+
+1. Import at the script:
+    ```ts
+    import ... from "npm:@hugoalh/string-dissect[@${Tag}]";
+    ```
+
+> **ℹ️ Note**
+>
+> - Although it is recommended to import the entire module, it is also able to import part of the module with sub path if available, please visit [file `jsr.jsonc`](./jsr.jsonc) property `exports` for available sub paths.
+> - It is recommended to import the module with tag for immutability.
+
+### Via Remote Import
+
+> **🎯 Supported Target**
+>
+> - Deno
+
+1. Import at the script:
+    ```ts
+    /* Via GitHub Raw (Require Tag) */
+    import ... from "https://raw.githubusercontent.com/hugoalh-studio/string-dissect-es/${Tag}/mod.ts";
+    ```
+
+> **ℹ️ Note**
+>
+> - Although it is recommended to import the entire module with the main path `mod.ts`, it is also able to import part of the module with sub path if available, but do not import if:
+>
+>   - it's file path has an underscore prefix (e.g.: `_foo.ts`, `_util/bar.ts`), or
+>   - it is a benchmark or test file (e.g.: `foo.bench.ts`, `foo.test.ts`), or
+>   - it's symbol has an underscore prefix (e.g.: `export function _baz() {}`).
+>
+>   These elements are not considered part of the public API, thus no stability is guaranteed for them.
+> - Although there have 3rd party services which provide enhanced, equal, or similar methods/ways to remote import the module, beware these services maybe inject unrelated elements and thus affect the security.
 
 ## 🧩 API
 

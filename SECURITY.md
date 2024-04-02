@@ -25,7 +25,9 @@
 
 | **Versions** | **Release Date** | **Long Term Support Date** | **End Of Life Date** |
 |:-:|:-:|:-:|:-:|
-| v1.X.X | 2024-03-11 | 2024-03-11 | *Unknown* |
+| v1.X.X (For Non-NPM) | 2024-03-11 | 2024-03-11 | *Unknown* |
+| v2.X.X (For NPM Only) | 2023-12-27 | 2024-01-08 | *Unknown* |
+| v1.X.X (For NPM Only) | 2023-03-09 | 2023-04-06 | 2024-03-01 |
 
 > **ℹ️ Note**
 >
