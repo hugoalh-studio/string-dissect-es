@@ -13,7 +13,7 @@ An ES (JavaScript & TypeScript) module to dissect the string; Safe with the emoj
 
 - Bun ^ v1.0.0
 - Cloudflare Workers
-- Deno >= v1.34.0 / >= v1.41.1 *(Via JSR)*
+- Deno >= v1.34.0 / >= v1.41.1 (For JSR Only)
   > **🛡️ Require Permission**
   >
   > *N/A*
