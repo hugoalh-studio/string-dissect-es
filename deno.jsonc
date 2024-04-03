@@ -39,7 +39,7 @@
 	"tasks": {
 		// `deno publish` have weird behaviours, always check via the task `jsr-check` before release! For more information, please visit https://github.com/denoland/deno/issues/22648.
 		"jsr-check": "deno publish --allow-dirty --config jsr.jsonc --dry-run --no-provenance",
-		// Build NodeJS package.
-		"nodejs-build": "deno run --allow-all --deny-hrtime --no-prompt --quiet .dnt.ts"
+		// Build NPM package.
+		"npm-build": "deno run --allow-all --deny-hrtime --no-prompt --quiet .dnt.ts"
 	}
 }

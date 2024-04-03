@@ -16,24 +16,24 @@ const transformResult: TransformOutput = await transform({
 	shims: [],
 	target: "Latest"
 });
-const nodejsOutputDir = "nodejs";
-const nodejsOutputDirDist = `${nodejsOutputDir}/dist`;
-const nodejsOutputDirSource = `${nodejsOutputDir}/src`;
-await ensureDir(nodejsOutputDirDist);
-await ensureDir(nodejsOutputDirSource);
-await emptyDir(nodejsOutputDirDist);
-await emptyDir(nodejsOutputDirSource);
+const npmOutputDir = "npm";
+const npmOutputDirDist = `${npmOutputDir}/dist`;
+const npmOutputDirSource = `${npmOutputDir}/src`;
+await ensureDir(npmOutputDirDist);
+await ensureDir(npmOutputDirSource);
+await emptyDir(npmOutputDirDist);
+await emptyDir(npmOutputDirSource);
 for (const { filePath, fileText } of transformResult.main.files) {
-	const filePathOutput = `${nodejsOutputDirSource}/${filePath}`;
+	const filePathOutput = `${npmOutputDirSource}/${filePath}`;
 	await ensureDir(pathDirname(filePathOutput));
 	await Deno.writeTextFile(filePathOutput, fileText);
 }
-for (const { name } of pathsMain) {
+for (const { path } of pathsMain) {
 	if (
-		/^LICENSE[^\\\/]*\.md$/.test(name) ||
-		/^README[^\\\/]*\.md$/.test(name)
+		/^LICENSE[^\\\/]*\.md$/.test(path) ||
+		/^README[^\\\/]*\.md$/.test(path)
 	) {
-		await fsCopy(name, `${nodejsOutputDir}/${name}`, { overwrite: true, preserveTimestamps: true });
+		await fsCopy(path, `${npmOutputDir}/${path}`, { overwrite: true, preserveTimestamps: true });
 	}
 }
 await new Deno.Command("pwsh", {
@@ -42,5 +42,5 @@ await new Deno.Command("pwsh", {
 		"-Command",
 		"$ErrorActionPreference = 'Stop'; npm install --ignore-scripts; npm run build"
 	],
-	cwd: `${Deno.cwd()}/${nodejsOutputDir}`
+	cwd: `${Deno.cwd()}/${npmOutputDir}`
 }).output();
