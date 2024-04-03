@@ -28,3 +28,5 @@ jobs:
     uses: "hugoalh/hugoalh/.github/workflows/call-review-deno-code-1.yml@main"
     with:
       runon: "${{matrix.runon}}"
+      jsr_hasdeployment: true
+      npm_hasdeployment: true
