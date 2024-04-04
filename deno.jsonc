@@ -10,7 +10,7 @@
 	},
 	"imports": {
 		// Only remap development dependencies! For more information, please visit https://docs.deno.com/runtime/manual/basics/import_maps.
-		"DNT/": "https://deno.land/x/dnt@0.40.0/",
+		"DNT": "jsr:@deno/dnt@0.41.1",
 		"STD/": "https://deno.land/std@0.221.0/",
 		"TEST/": "https://deno.land/std@0.221.0/assert/"
 	},
@@ -37,7 +37,7 @@
 	},
 	"lock": false,
 	"tasks": {
-		// `deno publish` have weird behaviours, always check via the task `jsr-check` before release! For more information, please visit https://github.com/denoland/deno/issues/22648.
+		// Check JSR package metadata. `deno publish` have weird behaviours, always check before release! For more information, please visit https://github.com/denoland/deno/issues/22648.
 		"jsr-check": "deno publish --allow-dirty --config jsr.jsonc --dry-run --no-provenance",
 		// Build NPM package.
 		"npm-build": "deno run --allow-all --deny-hrtime --no-prompt --quiet .dnt.ts"

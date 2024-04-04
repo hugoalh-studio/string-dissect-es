@@ -1,5 +1,5 @@
 import { dirname as pathDirname } from "node:path";
-import { transform, type TransformOutput } from "DNT/transform.ts";
+import { transform, type TransformOutput } from "DNT/transform";
 import { copy as fsCopy } from "STD/fs/copy.ts";
 import { emptyDir } from "STD/fs/empty_dir.ts";
 import { ensureDir } from "STD/fs/ensure_dir.ts";
