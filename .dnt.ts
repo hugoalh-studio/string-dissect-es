@@ -6,9 +6,7 @@ import { ensureDir } from "STD/fs/ensure_dir.ts";
 import { walk as readDir, type WalkEntry } from "STD/fs/walk.ts";
 const pathsMain: WalkEntry[] = await Array.fromAsync(readDir("."));
 const transformResult: TransformOutput = await transform({
-	entryPoints: [
-		"mod.ts"
-	],
+	entryPoints: ["mod.ts"],
 	mappings: {
 		"https://esm.sh/ansi-regex@6.0.1": { name: "ansi-regex" },
 		"https://esm.sh/url-regex-safe@4.0.0": { name: "url-regex-safe" }
@@ -33,14 +31,16 @@ for (const { path } of pathsMain) {
 		/^LICENSE[^\\\/]*\.md$/.test(path) ||
 		/^README[^\\\/]*\.md$/.test(path)
 	) {
-		await fsCopy(path, `${npmOutputDir}/${path}`, { overwrite: true, preserveTimestamps: true });
+		await fsCopy(path, `${npmOutputDir}/${path}`, {
+			overwrite: true,
+			preserveTimestamps: true
+		});
 	}
 }
 await new Deno.Command("pwsh", {
-	args: [
-		"-NonInteractive",
-		"-Command",
-		"$ErrorActionPreference = 'Stop'; npm install --ignore-scripts; npm run build"
-	],
-	cwd: `${Deno.cwd()}/${npmOutputDir}`
+	args: ["-NonInteractive", "-Command", "$ErrorActionPreference = 'Stop'; npm install; npm run build"],
+	cwd: `${Deno.cwd()}/${npmOutputDir}`,
+	stderr: "inherit",
+	stdin: "inherit",
+	stdout: "inherit"
 }).output();
