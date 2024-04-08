@@ -38,7 +38,7 @@ for (const { path } of pathsMain) {
 	}
 }
 await new Deno.Command("pwsh", {
-	args: ["-NonInteractive", "-Command", "$ErrorActionPreference = 'Stop'; npm install; npm run build"],
+	args: ["-NonInteractive", "-Command", "$ErrorActionPreference = 'Stop'; npm install; npm run build; npm publish --dry-run"],
 	cwd: `${Deno.cwd()}/${npmOutputDir}`,
 	stderr: "inherit",
 	stdin: "inherit",
