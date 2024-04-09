@@ -3,7 +3,6 @@
 [**⚖️** MIT](./LICENSE.md)
 
 [![GitHub: hugoalh-studio/string-dissect-es](https://img.shields.io/github/v/release/hugoalh-studio/string-dissect-es?label=hugoalh-studio/string-dissect-es&labelColor=181717&logo=github&logoColor=ffffff&sort=semver&style=flat "GitHub: hugoalh-studio/string-dissect-es")](https://github.com/hugoalh-studio/string-dissect-es)
-[![GitHub: hugoalh-studio/string-dissect-js (Legacy)](https://img.shields.io/github/v/release/hugoalh-studio/string-dissect-js?label=hugoalh-studio/string-dissect-js%20%28Legacy%29&labelColor=181717&logo=github&logoColor=ffffff&sort=semver&style=flat "GitHub: hugoalh-studio/string-dissect-js (Legacy)")](https://github.com/hugoalh-studio/string-dissect-js)
 [![JSR: @hugoalh/string-dissect](https://img.shields.io/jsr/v/@hugoalh/string-dissect?label=JSR%20@hugoalh/string-dissect&labelColor=F7DF1E&logoColor=000000&style=flat "JSR: @hugoalh/string-dissect")](https://jsr.io/@hugoalh/string-dissect)
 [![NPM: @hugoalh/string-dissect](https://img.shields.io/npm/v/@hugoalh/string-dissect?label=@hugoalh/string-dissect&labelColor=CB3837&logo=npm&logoColor=ffffff&style=flat "NPM: @hugoalh/string-dissect")](https://www.npmjs.com/package/@hugoalh/string-dissect)
 
