@@ -46,7 +46,7 @@ export enum StringSegmentType {
  * String segment descriptor.
  */
 export interface StringSegmentDescriptor {
-	type: StringSegmentType;
+	type: `${StringSegmentType}`;
 	value: string;
 }
 /**
@@ -62,7 +62,7 @@ export interface StringSegmentDescriptorExtend extends StringSegmentDescriptor {
 interface StringDissectSegmentByRegExpParameters {
 	matcher: RegExp;
 	segment: string;
-	type: StringSegmentType;
+	type: `${StringSegmentType}`;
 }
 /**
  * @access private

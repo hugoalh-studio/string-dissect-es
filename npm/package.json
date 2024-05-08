@@ -1,6 +1,6 @@
 {
 	"name": "@hugoalh/string-dissect",
-	"version": "3.0.0",
+	"version": "3.0.1",
 	"description": "A module to dissect the string; Safe with the emojis, URLs, and words.",
 	"keywords": [
 		"dissect",

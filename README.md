@@ -8,127 +8,43 @@
 
 An ES (JavaScript & TypeScript) module to dissect the string; Safe with the emojis, URLs, and words.
 
-## 🎯 Target
+## 🔰 Begin
 
-- Bun ^ v1.0.0
-- Cloudflare Workers
-- Deno >= v1.34.0 / >= v1.41.1 (For JSR Only)
-  > **🛡️ Require Permission**
-  >
-  > *N/A*
-- NodeJS >= v20.9.0
+### 🎯 Targets
 
-## 🔰 Usage
+|  | **Registry - JSR** | **Registry - NPM** | **Remote Import** |
+|:--|:--|:--|:--|
+| **[Bun](https://bun.sh/)** >= v1.1.0 | [✔️ `node_modules`](https://jsr.io/docs/npm-compatibility) | [✔️ Specifier `npm:`](https://bun.sh/docs/runtime/autoimport) | ❌ |
+| **[Cloudflare Workers](https://workers.cloudflare.com/)** | [✔️ `node_modules`](https://jsr.io/docs/with/cloudflare-workers) | [✔️ `node_modules`](https://docs.npmjs.com/using-npm-packages-in-your-projects) | ❌ |
+| **[Deno](https://deno.land/)** >= v1.42.0 | [✔️ Specifier `jsr:`](https://jsr.io/docs/with/deno) | [✔️ Specifier `npm:`](https://docs.deno.com/runtime/manual/node/npm_specifiers) | [✔️](https://docs.deno.com/runtime/manual/basics/modules/#remote-import) |
+| **[NodeJS](https://nodejs.org/)** >= v20.9.0 | [✔️ `node_modules`](https://jsr.io/docs/with/node) | [✔️ `node_modules`](https://docs.npmjs.com/using-npm-packages-in-your-projects) | ❌ |
 
-### Via JSR With `node_modules`
-
-> **🎯 Supported Target**
+> **ℹ️ Note**
 >
-> - Bun
-> - Cloudflare Workers
-> - NodeJS
+> It is possible to use this module in other methods/ways which not listed in here, however it is not officially supported.
 
-1. Install via:
-    - Bun
-      ```sh
-      bunx jsr add @hugoalh/string-dissect[@${Tag}]
-      ```
-    - NPM
-      ```sh
-      npx jsr add @hugoalh/string-dissect[@${Tag}]
-      ```
-    - PNPM
-      ```sh
-      pnpm dlx jsr add @hugoalh/string-dissect[@${Tag}]
-      ```
-    - Yarn
-      ```sh
-      yarn dlx jsr add @hugoalh/string-dissect[@${Tag}]
-      ```
-2. Import at the script:
-    ```ts
-    import ... from "@hugoalh/string-dissect";
-    ```
+### #️⃣ Registries Identifier
+
+- **JSR:**
+  ```
+  @hugoalh/string-dissect
+  ```
+- **NPM:**
+  ```
+  @hugoalh/string-dissect
+  ```
 
 > **ℹ️ Note**
 >
 > - Although it is recommended to import the entire module, it is also able to import part of the module with sub path if available, please visit [file `jsr.jsonc`](./jsr.jsonc) property `exports` for available sub paths.
-> - It is recommended to import the module with tag for immutability.
+> - It is recommended to use this module with tag for immutability.
 
-### Via JSR With Specifier
+### #️⃣ Remote Import Paths
 
-> **🎯 Supported Target**
->
-> - Deno
-
-1. Import at the script:
-    ```ts
-    import ... from "jsr:@hugoalh/string-dissect[@${Tag}]";
-    ```
-
-> **ℹ️ Note**
->
-> - Although it is recommended to import the entire module, it is also able to import part of the module with sub path if available, please visit [file `jsr.jsonc`](./jsr.jsonc) property `exports` for available sub paths.
-> - It is recommended to import the module with tag for immutability.
-
-### Via NPM With `node_modules`
-
-> **🎯 Supported Target**
->
-> - Cloudflare Workers
-> - NodeJS
-
-1. Install via:
-    - NPM
-      ```sh
-      npm install @hugoalh/string-dissect[@${Tag}]
-      ```
-    - PNPM
-      ```sh
-      pnpm add @hugoalh/string-dissect[@${Tag}]
-      ```
-    - Yarn
-      ```sh
-      yarn add @hugoalh/string-dissect[@${Tag}]
-      ```
-2. Import at the script:
-    ```ts
-    import ... from "@hugoalh/string-dissect";
-    ```
-
-> **ℹ️ Note**
->
-> - Although it is recommended to import the entire module, it is also able to import part of the module with sub path if available, please visit [file `jsr.jsonc`](./jsr.jsonc) property `exports` for available sub paths.
-> - It is recommended to import the module with tag for immutability.
-
-### Via NPM With Specifier
-
-> **🎯 Supported Target**
->
-> - Bun
-> - Deno
-
-1. Import at the script:
-    ```ts
-    import ... from "npm:@hugoalh/string-dissect[@${Tag}]";
-    ```
-
-> **ℹ️ Note**
->
-> - Although it is recommended to import the entire module, it is also able to import part of the module with sub path if available, please visit [file `jsr.jsonc`](./jsr.jsonc) property `exports` for available sub paths.
-> - It is recommended to import the module with tag for immutability.
-
-### Via Remote Import
-
-> **🎯 Supported Target**
->
-> - Deno
-
-1. Import at the script:
-    ```ts
-    /* Via GitHub Raw (Require Tag) */
-    import ... from "https://raw.githubusercontent.com/hugoalh-studio/string-dissect-es/${Tag}/mod.ts";
-    ```
+- **GitHub Raw:** (Require Tag)
+  ```
+  https://raw.githubusercontent.com/hugoalh-studio/string-dissect-es/${Tag}/mod.ts
+  ```
 
 > **ℹ️ Note**
 >
@@ -141,7 +57,11 @@ An ES (JavaScript & TypeScript) module to dissect the string; Safe with the emoj
 >   These elements are not considered part of the public API, thus no stability is guaranteed for them.
 > - Although there have 3rd party services which provide enhanced, equal, or similar methods/ways to remote import the module, beware these services maybe inject unrelated elements and thus affect the security.
 
-## 🧩 API
+### 🛡️ Permissions
+
+*This module does not require any permission.*
+
+## 🧩 APIs
 
 - ```ts
   class StringDissector {
@@ -199,7 +119,7 @@ An ES (JavaScript & TypeScript) module to dissect the string; Safe with the emoj
   ```
 - ```ts
   interface StringSegmentDescriptor {
-    type: StringSegmentType;
+    type: `${StringSegmentType}`;
     value: string;
   }
   ```
@@ -220,7 +140,7 @@ An ES (JavaScript & TypeScript) module to dissect the string; Safe with the emoj
 > - [Deno CLI `deno doc`](https://deno.land/manual/tools/documentation_generator)
 > - [JSR](https://jsr.io/@hugoalh/string-dissect)
 
-## ✍️ Example
+## ✍️ Examples
 
 - ```ts
   const sample1 = "Vel ex sit est sit est tempor enim et voluptua consetetur gubergren gubergren ut.";
