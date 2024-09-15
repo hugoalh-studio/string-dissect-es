@@ -36,7 +36,7 @@
 		"build": "tsc"
 	},
 	"dependencies": {
-		"ansi-regex": "6.0.1",
+		"ansi-regex": "6.1.0",
 		"url-regex-safe": "4.0.0"
 	},
 	"devDependencies": {
