@@ -1,5 +1,5 @@
-import regexpANSIOriginal from "https://esm.sh/ansi-regex@6.0.1";
-import regexpURLOriginal from "https://esm.sh/url-regex-safe@4.0.0";
+import regexpANSIOriginal from "https://esm.sh/ansi-regex@^6.1.0";
+import regexpURLOriginal from "https://esm.sh/url-regex-safe@^4.0.0";
 const regexpANSIGlobal = new RegExp(regexpANSIOriginal().source, "gu");
 const regexpEmojiExact = /^\p{Emoji}+$/v;
 const regexpURLGlobal = new RegExp(regexpURLOriginal().source, "gu");
@@ -7,22 +7,22 @@ export type StringDissectorLocales = ConstructorParameters<typeof Intl.Segmenter
 export interface StringDissectorOptions {
 	/**
 	 * The locale(s) to use in the operation; The JavaScript implementation examines locales, and then computes a locale it understands that comes closest to satisfying the expressed preference. By default, the implementation's default locale will be used. For more information, please visit https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#locales_argument.
-	 * @default undefined
+	 * @default {undefined}
 	 */
 	locales?: StringDissectorLocales;
 	/**
 	 * Whether to remove ANSI escape codes.
-	 * @default false
+	 * @default {false}
 	 */
 	removeANSI?: boolean;
 	/**
 	 * Whether to prevent URLs get splitted.
-	 * @default true
+	 * @default {true}
 	 */
 	safeURLs?: boolean;
 	/**
 	 * Whether to prevent words get splitted.
-	 * @default true
+	 * @default {true}
 	 */
 	safeWords?: boolean;
 }
@@ -56,19 +56,11 @@ export interface StringSegmentDescriptorExtend extends StringSegmentDescriptor {
 	indexEnd: number;
 	indexStart: number;
 }
-/**
- * @access private
- */
 interface StringDissectSegmentByRegExpParameters {
 	matcher: RegExp;
 	segment: string;
 	type: `${StringSegmentType}`;
 }
-/**
- * @access private
- * @param {StringDissectSegmentByRegExpParameters} param0
- * @returns {Generator<string | StringSegmentDescriptor>}
- */
 function* dissectSegmentWithRegExp({ matcher, segment, type }: StringDissectSegmentByRegExpParameters): Generator<string | StringSegmentDescriptor> {
 	let cursor = 0;
 	for (const match of segment.matchAll(matcher)) {

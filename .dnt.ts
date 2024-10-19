@@ -1,46 +1,54 @@
-import { transform, type TransformOutput } from "DNT/transform";
-import { copy as fsCopy } from "STD/fs/copy";
-import { emptyDir } from "STD/fs/empty-dir";
-import { ensureDir } from "STD/fs/ensure-dir";
-import { walk as readDir, type WalkEntry } from "STD/fs/walk";
-import { dirname as pathDirname } from "node:path";
-const pathsMain: WalkEntry[] = await Array.fromAsync(readDir("."));
-const transformResult: TransformOutput = await transform({
-	entryPoints: ["mod.ts"],
+import {
+	getMetadataFromConfig,
+	invokeDenoNodeJSTransformer
+} from "DNT";
+const configJSR = await getMetadataFromConfig("jsr.jsonc");
+await invokeDenoNodeJSTransformer({
+	assetsCopy: [
+		"LICENSE.md",
+		"README.md"
+	],
+	entrypoints: configJSR.getExports(),
+	generateDeclarationMap: true,
 	mappings: {
-		"https://esm.sh/ansi-regex@6.0.1": { name: "ansi-regex" },
-		"https://esm.sh/url-regex-safe@4.0.0": { name: "url-regex-safe" }
+		"https://esm.sh/ansi-regex@^6.1.0": {
+			name: "ansi-regex",
+			version: "^6.1.0"
+
+		},
+		"https://esm.sh/url-regex-safe@^4.0.0": {
+			name: "url-regex-safe",
+			version: "^4.0.0"
+		}
 	},
-	shims: [],
-	target: "Latest"
+	metadata: {
+		name: configJSR.getName(),
+		version: configJSR.getVersion(),
+		description: "A module to dissect the string; Safe with the emojis, URLs, and words.",
+		keywords: [
+			"dissect",
+			"string"
+		],
+		homepage: "https://github.com/hugoalh-studio/string-dissect-es#readme",
+		bugs: {
+			url: "https://github.com/hugoalh-studio/string-dissect-es/issues"
+		},
+		license: "MIT",
+		author: "hugoalh",
+		repository: {
+			type: "git",
+			url: "git+https://github.com/hugoalh-studio/string-dissect-es.git"
+		},
+		scripts: {
+		},
+		engines: {
+			node: ">=20.9.0"
+		},
+		private: false,
+		publishConfig: {
+			access: "public"
+		}
+	},
+	outputDirectory: "npm",
+	outputDirectoryPreEmpty: true
 });
-const npmOutputDir = "npm";
-const npmOutputDirDist = `${npmOutputDir}/dist`;
-const npmOutputDirSource = `${npmOutputDir}/src`;
-await ensureDir(npmOutputDirDist);
-await ensureDir(npmOutputDirSource);
-await emptyDir(npmOutputDirDist);
-await emptyDir(npmOutputDirSource);
-for (const { filePath, fileText } of transformResult.main.files) {
-	const filePathOutput = `${npmOutputDirSource}/${filePath}`;
-	await ensureDir(pathDirname(filePathOutput));
-	await Deno.writeTextFile(filePathOutput, fileText);
-}
-for (const { path } of pathsMain) {
-	if (
-		/^LICENSE[^\\\/]*\.md$/.test(path) ||
-		/^README[^\\\/]*\.md$/.test(path)
-	) {
-		await fsCopy(path, `${npmOutputDir}/${path}`, {
-			overwrite: true,
-			preserveTimestamps: true
-		});
-	}
-}
-await new Deno.Command("pwsh", {
-	args: ["-NonInteractive", "-Command", "$ErrorActionPreference = 'Stop'; npm install; npm run build; npm publish --dry-run"],
-	cwd: `${Deno.cwd()}/${npmOutputDir}`,
-	stderr: "inherit",
-	stdin: "inherit",
-	stdout: "inherit"
-}).output();
