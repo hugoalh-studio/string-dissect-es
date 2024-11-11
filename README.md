@@ -2,7 +2,7 @@
 
 [**⚖️** MIT](./LICENSE.md)
 
-[![GitHub: hugoalh-studio/string-dissect-es](https://img.shields.io/github/v/release/hugoalh-studio/string-dissect-es?label=hugoalh-studio/string-dissect-es&labelColor=181717&logo=github&logoColor=ffffff&sort=semver&style=flat "GitHub: hugoalh-studio/string-dissect-es")](https://github.com/hugoalh-studio/string-dissect-es)
+[![GitHub: hugoalh/string-dissect-es](https://img.shields.io/github/v/release/hugoalh/string-dissect-es?label=hugoalh/string-dissect-es&labelColor=181717&logo=github&logoColor=ffffff&sort=semver&style=flat "GitHub: hugoalh/string-dissect-es")](https://github.com/hugoalh/string-dissect-es)
 [![JSR: @hugoalh/string-dissect](https://img.shields.io/jsr/v/@hugoalh/string-dissect?label=@hugoalh/string-dissect&labelColor=F7DF1E&logo=jsr&logoColor=000000&style=flat "JSR: @hugoalh/string-dissect")](https://jsr.io/@hugoalh/string-dissect)
 [![NPM: @hugoalh/string-dissect](https://img.shields.io/npm/v/@hugoalh/string-dissect?label=@hugoalh/string-dissect&labelColor=CB3837&logo=npm&logoColor=ffffff&style=flat "NPM: @hugoalh/string-dissect")](https://www.npmjs.com/package/@hugoalh/string-dissect)
 
@@ -26,7 +26,7 @@ An ES (JavaScript & TypeScript) module to dissect the string; Safe with the emoj
 
 - **Remote - GitHub Raw:**
   ```
-  https://raw.githubusercontent.com/hugoalh-studio/string-dissect-es/{Tag}/mod.ts
+  https://raw.githubusercontent.com/hugoalh/string-dissect-es/{Tag}/mod.ts
   ```
 - **JSR:**
   ```
@@ -52,7 +52,7 @@ An ES (JavaScript & TypeScript) module to dissect the string; Safe with the emoj
 
 *This module does not require any runtime permission.*
 
-## 🧩 APIs
+## 🧩 APIs (Excerpt)
 
 - ```ts
   class StringDissector {
@@ -125,7 +125,7 @@ An ES (JavaScript & TypeScript) module to dissect the string; Safe with the emoj
   ```
 
 > [!NOTE]
-> - For the prettier documentation, can visit via:
+> - For the full or prettier documentation, can visit via:
 >   - [Deno CLI `deno doc`](https://docs.deno.com/runtime/reference/cli/documentation_generator/)
 >   - [JSR](https://jsr.io/@hugoalh/string-dissect)
 
@@ -187,7 +187,11 @@ An ES (JavaScript & TypeScript) module to dissect the string; Safe with the emoj
   ```
 - ```ts
   /* Either */
-  Array.from(new StringDissector().dissect("🤝💑💏👪👨‍👩‍👧‍👦👩‍👦👩‍👧‍👦🧑‍🤝‍🧑")).map((element) => { return element.value; });
-  Array.from(dissectString("🤝💑💏👪👨‍👩‍👧‍👦👩‍👦👩‍👧‍👦🧑‍🤝‍🧑")).map((element) => { return element.value; });
+  Array.from(new StringDissector().dissect("🤝💑💏👪👨‍👩‍👧‍👦👩‍👦👩‍👧‍👦🧑‍🤝‍🧑"), ({ value }) => {
+    return value;
+  });
+  Array.from(dissectString("🤝💑💏👪👨‍👩‍👧‍👦👩‍👦👩‍👧‍👦🧑‍🤝‍🧑"), ({ value }) => {
+    return value;
+  });
   //=> [ "🤝", "💑", "💏", "👪", "👨‍👩‍👧‍👦", "👩‍👦", "👩‍👧‍👦", "🧑‍🤝‍🧑" ]
   ```

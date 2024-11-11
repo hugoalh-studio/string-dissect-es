@@ -29,15 +29,15 @@ await invokeDenoNodeJSTransformer({
 			"dissect",
 			"string"
 		],
-		homepage: "https://github.com/hugoalh-studio/string-dissect-es#readme",
+		homepage: "https://github.com/hugoalh/string-dissect-es#readme",
 		bugs: {
-			url: "https://github.com/hugoalh-studio/string-dissect-es/issues"
+			url: "https://github.com/hugoalh/string-dissect-es/issues"
 		},
 		license: "MIT",
 		author: "hugoalh",
 		repository: {
 			type: "git",
-			url: "git+https://github.com/hugoalh-studio/string-dissect-es.git"
+			url: "git+https://github.com/hugoalh/string-dissect-es.git"
 		},
 		scripts: {
 		},
