@@ -56,55 +56,21 @@ An ES (JavaScript & TypeScript) module to dissect the string; Safe with the emoj
 
 - ```ts
   class StringDissector {
-    constructor(options: StringDissectorOptions = {}): StringDissector;
-    dissect(item: string, optionsOverride: StringDissectorOptions = {}): Generator<StringSegmentDescriptor>;
-    dissectExtend(item: string, optionsOverride: StringDissectorOptions = {}): Generator<StringSegmentDescriptorExtend>;
-    static dissect(item: string, options: StringDissectorOptions = {}): Generator<StringSegmentDescriptor>;
-    static dissectExtend(item: string, options: StringDissectorOptions = {}): Generator<StringSegmentDescriptorExtend>;
-  }
-  ```
-- ```ts
-  enum StringSegmentType {
-    ansi = "ansi",
-    ANSI = "ansi",
-    character = "character",
-    Character = "character",
-    emoji = "emoji",
-    Emoji = "emoji",
-    url = "url",
-    Url = "url",
-    URL = "url",
-    word = "word",
-    Word = "word"
+    constructor(options: StringDissectorOptions = {});
+    dissect(item: string): Generator<StringSegmentDescriptor>;
+    dissectExtend(item: string): Generator<StringSegmentDescriptorExtend>;
   }
   ```
 - ```ts
   interface StringDissectorOptions {
-    /**
-     * The locale(s) to use in the operation; The JavaScript implementation examines locales, and then computes a locale it understands that comes closest to satisfying the expressed preference. By default, the implementation's default locale will be used. For more information, please visit https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#locales_argument.
-     * @default undefined
-     */
-    locales?: StringDissectorLocales;
-    /**
-     * Whether to remove ANSI escape codes.
-     * @default false
-     */
-    removeANSI?: boolean;
-    /**
-     * Whether to prevent URLs get splitted.
-     * @default true
-     */
+    locales?: Intl.LocalesArgument;
     safeURLs?: boolean;
-    /**
-     * Whether to prevent words get splitted.
-     * @default true
-     */
     safeWords?: boolean;
   }
   ```
 - ```ts
   interface StringSegmentDescriptor {
-    type: `${StringSegmentType}`;
+    type: StringSegmentType;
     value: string;
   }
   ```
@@ -115,7 +81,7 @@ An ES (JavaScript & TypeScript) module to dissect the string; Safe with the emoj
   }
   ```
 - ```ts
-  type StringDissectorLocales = ConstructorParameters<typeof Intl.Segmenter>[0];
+  type StringSegmentType = "ansi" | "character" | "emoji" | "url" | "word";
   ```
 
 > [!NOTE]
