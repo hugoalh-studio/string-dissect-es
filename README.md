@@ -64,12 +64,6 @@ An ES (JavaScript & TypeScript) module to dissect the string; Safe with the emoj
   }
   ```
 - ```ts
-  function dissectString(item: string, options: StringDissectorOptions = {}): Generator<StringSegmentDescriptor>;
-  ```
-- ```ts
-  function dissectStringExtend(item: string, options: StringDissectorOptions = {}): Generator<StringSegmentDescriptorExtend>;
-  ```
-- ```ts
   enum StringSegmentType {
     ansi = "ansi",
     ANSI = "ansi",
