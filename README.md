@@ -58,26 +58,22 @@ An ES (JavaScript & TypeScript) module to dissect the string; Safe with the emoj
   class StringDissector {
     constructor(options: StringDissectorOptions = {});
     dissect(item: string): Generator<StringSegmentDescriptor>;
-    dissectExtend(item: string): Generator<StringSegmentDescriptorExtend>;
   }
   ```
 - ```ts
   interface StringDissectorOptions {
     locales?: Intl.LocalesArgument;
+    outputANSI?: boolean;
     safeURLs?: boolean;
     safeWords?: boolean;
   }
   ```
 - ```ts
   interface StringSegmentDescriptor {
-    type: StringSegmentType;
-    value: string;
-  }
-  ```
-- ```ts
-  interface StringSegmentDescriptorExtend extends StringSegmentDescriptor {
     indexEnd: number;
     indexStart: number;
+    type: StringSegmentType;
+    value: string;
   }
   ```
 - ```ts

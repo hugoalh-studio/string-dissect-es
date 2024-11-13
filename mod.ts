@@ -11,6 +11,11 @@ export interface StringDissectorOptions {
 	 */
 	locales?: Intl.LocalesArgument;
 	/**
+	 * Whether to output string segments of ANSI escape codes.
+	 * @default {true}
+	 */
+	outputANSI?: boolean;
+	/**
 	 * Whether to prevent URLs get splitted.
 	 * @default {true}
 	 */
@@ -24,6 +29,14 @@ export interface StringDissectorOptions {
 export type StringSegmentType = "ansi" | "character" | "emoji" | "url" | "word";
 export interface StringSegmentDescriptor {
 	/**
+	 * String segment end index of the input string.
+	 */
+	indexEnd: number;
+	/**
+	 * String segment start index of the input string.
+	 */
+	indexStart: number;
+	/**
 	 * Type of the string segment.
 	 */
 	type: StringSegmentType;
@@ -32,21 +45,11 @@ export interface StringSegmentDescriptor {
 	 */
 	value: string;
 }
-export interface StringSegmentDescriptorExtend extends StringSegmentDescriptor {
-	/**
-	 * String segment end index of the input string.
-	 */
-	indexEnd: number;
-	/**
-	 * String segment start index of the input string.
-	 */
-	indexStart: number;
-}
 interface DissectorRegExpEntry {
 	matcher: RegExp;
 	matcherType: StringSegmentType;
 }
-function* dissectorWithRegExp(item: string, matchersEntry: DissectorRegExpEntry[]): Generator<string | StringSegmentDescriptor> {
+function* dissectorWithRegExp(item: string, matchersEntry: DissectorRegExpEntry[]): Generator<string | Pick<StringSegmentDescriptor, "type" | "value">> {
 	const [{
 		matcher,
 		matcherType
@@ -82,7 +85,8 @@ function* dissectorWithRegExp(item: string, matchersEntry: DissectorRegExpEntry[
  * String dissector to dissect the string; Safe with the emojis, URLs, and words.
  */
 export class StringDissector {
-	#safeURLs: boolean;
+	#outputANSI: boolean;
+	#regexpMatchers: DissectorRegExpEntry[];
 	#segmenter: Intl.Segmenter;
 	/**
 	 * Initialize string dissector.
@@ -91,10 +95,22 @@ export class StringDissector {
 	constructor(options: StringDissectorOptions = {}) {
 		const {
 			locales,
+			outputANSI = true,
 			safeURLs = true,
 			safeWords = true
 		}: StringDissectorOptions = options;
-		this.#safeURLs = safeURLs;
+		this.#outputANSI = outputANSI;
+		const regexpMatchers: DissectorRegExpEntry[] = [{
+			matcher: regexpANSIGlobal,
+			matcherType: "ansi"
+		}];
+		if (safeURLs) {
+			regexpMatchers.push({
+				matcher: regexpURLGlobal,
+				matcherType: "url"
+			});
+		}
+		this.#regexpMatchers = regexpMatchers;
 		this.#segmenter = new Intl.Segmenter(locales, { granularity: safeWords ? "word" : "grapheme" });
 	}
 	/**
@@ -103,54 +119,36 @@ export class StringDissector {
 	 * @returns {Generator<StringSegmentDescriptor>} A dissected string with descriptor.
 	 */
 	*dissect(item: string): Generator<StringSegmentDescriptor> {
-		const matchersEntry: DissectorRegExpEntry[] = [{
-			matcher: regexpANSIGlobal,
-			matcherType: "ansi"
-		}];
-		if (this.#safeURLs) {
-			matchersEntry.push({
-				matcher: regexpURLGlobal,
-				matcherType: "url"
-			});
-		}
-		for (const segmentWithRegExp of dissectorWithRegExp(item, matchersEntry)) {
+		let cursor: number = 0;
+		for (const segmentWithRegExp of dissectorWithRegExp(item, this.#regexpMatchers)) {
 			if (typeof segmentWithRegExp !== "string") {
-				yield segmentWithRegExp;
+				const {
+					type,
+					value
+				}: Pick<StringSegmentDescriptor, "type" | "value"> = segmentWithRegExp;
+				if (!(!this.#outputANSI && type === "ansi")) {
+					yield {
+						indexEnd: cursor + value.length,
+						indexStart: cursor,
+						type,
+						value
+					};
+				}
+				cursor += value.length;
 				continue;
 			}
 			for (const {
 				isWordLike,
 				segment
 			} of this.#segmenter.segment(segmentWithRegExp)) {
-				if (regexpEmojiExact.test(segment)) {
-					yield {
-						type: "emoji",
-						value: segment
-					};
-					continue;
-				}
 				yield {
-					type: isWordLike ? "word" : "character",
+					indexEnd: cursor + segment.length,
+					indexStart: cursor,
+					type: regexpEmojiExact.test(segment) ? "emoji" : (isWordLike ? "word" : "character"),
 					value: segment
 				};
+				cursor += segment.length;
 			}
-		}
-	}
-	/**
-	 * Dissect the string with extend information.
-	 * @param {string} item String that need to dissect.
-	 * @returns {Generator<StringSegmentDescriptorExtend>} A dissected string with extend descriptor.
-	 */
-	*dissectExtend(item: string): Generator<StringSegmentDescriptorExtend> {
-		let cursor: number = 0;
-		for (const segment of this.dissect(item)) {
-			const segmentValueLength: number = segment.value.length;
-			yield {
-				...segment,
-				indexEnd: cursor + segmentValueLength,
-				indexStart: cursor
-			};
-			cursor += segmentValueLength;
 		}
 	}
 }
@@ -163,13 +161,4 @@ export default StringDissector;
  */
 export function dissectString(item: string, options: StringDissectorOptions = {}): Generator<StringSegmentDescriptor> {
 	return new StringDissector(options).dissect(item);
-}
-/**
- * Dissect the string with extend information; Safe with the emojis, URLs, and words.
- * @param {string} item String that need to dissect.
- * @param {StringDissectorOptions} [options={}] Options.
- * @returns {Generator<StringSegmentDescriptorExtend>} A dissected string with extend descriptor.
- */
-export function dissectStringExtend(item: string, options: StringDissectorOptions = {}): Generator<StringSegmentDescriptorExtend> {
-	return new StringDissector(options).dissectExtend(item);
 }
