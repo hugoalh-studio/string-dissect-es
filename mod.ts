@@ -89,7 +89,7 @@ export class StringDissector {
 	#regexpMatchers: DissectorRegExpEntry[];
 	#segmenter: Intl.Segmenter;
 	/**
-	 * Initialize string dissector.
+	 * Initialize the string dissector.
 	 * @param {StringDissectorOptions} [options={}] Options.
 	 */
 	constructor(options: StringDissectorOptions = {}) {
