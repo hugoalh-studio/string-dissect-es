@@ -1,13 +1,13 @@
 {
 	"$schema": "https://deno.land/x/deno/cli/schemas/config-file.v1.json",
 	"name": "@hugoalh/string-dissect",
-	"version": "4.0.0",
+	"version": "4.0.1",
 	"exports": {
 		".": "./mod.ts"
 	},
 	"imports": {
 		"https://esm.sh/ansi-regex@^6.1.0": "npm:ansi-regex@^6.1.0",
-		"https://esm.sh/url-regex-safe@^4.0.0": "npm:url-regex-safe@^4.0.0"
+		"https://raw.githubusercontent.com/hugoalh/url-regexp-es/v0.1.1/mod.ts": "jsr:@hugoalh/url-regexp@^0.1.1"
 	},
 	"publish": {
 		"exclude": [
@@ -30,6 +30,7 @@
 			"**/*.json",
 			"**/*.ts",
 			"**/*.tsx",
+			"**/*.wasm",
 			"jsr.jsonc",
 			"LICENSE*.md",
 			"README*.md"

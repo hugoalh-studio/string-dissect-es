@@ -1,8 +1,11 @@
 import regexpANSIOriginal from "https://esm.sh/ansi-regex@^6.1.0";
-import regexpURLOriginal from "https://esm.sh/url-regex-safe@^4.0.0";
+import regexpURLOriginal from "https://raw.githubusercontent.com/hugoalh/url-regexp-es/v0.1.1/mod.ts";
 const regexpANSIGlobal = new RegExp(regexpANSIOriginal().source, "gu");
 const regexpEmojiExact = /^\p{Emoji}+$/v;
-const regexpURLGlobal = new RegExp(regexpURLOriginal().source, "gu");
+const regexpURLGlobal = new RegExp(regexpURLOriginal({
+	auth: true,
+	returnString: true
+}), "giu");
 export interface StringDissectorOptions {
 	/**
 	 * The locales to use in the operation. The JavaScript implementation examines locales, and then computes a locale it understands that comes closest to satisfying the expressed preference. By default, the implementation's default locale will be used.
