@@ -90,9 +90,7 @@ An ES (JavaScript & TypeScript) module to dissect the string; Safe with the emoj
 - ```ts
   const sample1 = "Vel ex sit est sit est tempor enim et voluptua consetetur gubergren gubergren ut.";
 
-  /* Either */
   Array.from(new StringDissector().dissect(sample1));
-  Array.from(dissectString(sample1));
   /*=>
   [
     { value: "Vel", type: "word" },
@@ -107,9 +105,7 @@ An ES (JavaScript & TypeScript) module to dissect the string; Safe with the emoj
   ]
   */
 
-  /* Either */
   Array.from(new StringDissector({ safeWords: false }).dissect(sample1));
-  Array.from(dissectString(sample1, { safeWords: false }));
   /*=>
   [
     { value: "V", type: "character" },
@@ -125,9 +121,7 @@ An ES (JavaScript & TypeScript) module to dissect the string; Safe with the emoj
   */
   ```
 - ```ts
-  /* Either */
   Array.from(new StringDissector().dissect("GitHub homepage is https://github.com."));
-  Array.from(dissectString("GitHub homepage is https://github.com."));
   /*=>
   [
     { value: "GitHub", type: "word" },
@@ -142,11 +136,7 @@ An ES (JavaScript & TypeScript) module to dissect the string; Safe with the emoj
   */
   ```
 - ```ts
-  /* Either */
   Array.from(new StringDissector().dissect("🤝💑💏👪👨‍👩‍👧‍👦👩‍👦👩‍👧‍👦🧑‍🤝‍🧑"), ({ value }) => {
-    return value;
-  });
-  Array.from(dissectString("🤝💑💏👪👨‍👩‍👧‍👦👩‍👦👩‍👧‍👦🧑‍🤝‍🧑"), ({ value }) => {
     return value;
   });
   //=> [ "🤝", "💑", "💏", "👪", "👨‍👩‍👧‍👦", "👩‍👦", "👩‍👧‍👦", "🧑‍🤝‍🧑" ]
