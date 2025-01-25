@@ -16,9 +16,9 @@ await invokeDenoNodeJSTransformer({
 			version: "^6.1.0"
 
 		},
-		"https://esm.sh/url-regex-safe@^4.0.0": {
-			name: "url-regex-safe",
-			version: "^4.0.0"
+		"https://raw.githubusercontent.com/hugoalh/url-regexp-es/v0.1.1/mod.ts": {
+			name: "@hugoalh/url-regexp",
+			version: "^0.1.1"
 		}
 	},
 	metadata: {
