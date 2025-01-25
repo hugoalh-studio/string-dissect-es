@@ -82,3 +82,8 @@ Deno.test("12 No Output ANSI", { permissions: "none" }, () => {
 		return value;
 	}), ["Red", " ", "foreground", " ", "with", " ", "a", " ", "cyan", " ", "background", " ", "and", " ", "bold", " ", "text", " ", "at", " ", "the", " ", "end"]);
 });
+Deno.test("13", { permissions: "none" }, () => {
+	assertEquals(Array.from(new StringDissector().dissect("GitHub homepage is https://github.com."), ({ value }) => {
+		return value;
+	}), ["GitHub", " ", "homepage", " ", "is", " ", "https://github.com", "."]);
+});
