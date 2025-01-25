@@ -56,7 +56,7 @@ An ES (JavaScript & TypeScript) module to dissect the string; Safe with the emoj
 
 - ```ts
   class StringDissector {
-    constructor(options: StringDissectorOptions = {});
+    constructor(options?: StringDissectorOptions);
     dissect(item: string): Generator<StringSegmentDescriptor>;
   }
   ```
